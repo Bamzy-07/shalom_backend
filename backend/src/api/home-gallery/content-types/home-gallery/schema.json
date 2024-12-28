@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_galleries",
+  "info": {
+    "singularName": "home-gallery",
+    "pluralName": "home-galleries",
+    "displayName": "home-gallery"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}
