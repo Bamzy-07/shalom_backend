@@ -362,6 +362,39 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAcademicAcademic extends Schema.CollectionType {
+  collectionName: 'academics';
+  info: {
+    displayName: 'Academic';
+    pluralName: 'academics';
+    singularName: 'academic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::academic.academic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    name: Attribute.String & Attribute.Required;
+    phone_number: Attribute.String;
+    profile_pic: Attribute.Media<'images'>;
+    publishedAt: Attribute.DateTime;
+    title: Attribute.String & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::academic.academic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAdmissionAdmission extends Schema.CollectionType {
   collectionName: 'admissions';
   info: {
@@ -924,6 +957,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::academic.academic': ApiAcademicAcademic;
       'api::admission.admission': ApiAdmissionAdmission;
       'api::gallery.gallery': ApiGalleryGallery;
       'api::home-gallery.home-gallery': ApiHomeGalleryHomeGallery;
