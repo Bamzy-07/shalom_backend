@@ -362,6 +362,39 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdmissionAdmission extends Schema.CollectionType {
+  collectionName: 'admissions';
+  info: {
+    displayName: 'admission';
+    pluralName: 'admissions';
+    singularName: 'admission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::admission.admission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    name: Attribute.String & Attribute.Required;
+    phone_number: Attribute.String & Attribute.Required;
+    profile_pic: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Attribute.DateTime;
+    title: Attribute.String & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::admission.admission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGalleryGallery extends Schema.CollectionType {
   collectionName: 'galleries';
   info: {
@@ -891,6 +924,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::admission.admission': ApiAdmissionAdmission;
       'api::gallery.gallery': ApiGalleryGallery;
       'api::home-gallery.home-gallery': ApiHomeGalleryHomeGallery;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
